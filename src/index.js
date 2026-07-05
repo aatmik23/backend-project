@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 dotenv.config({
     'path': './.env'
 })
-import app from "./app.js"
+import {app} from "./app.js"
 
 import mongoose from "mongoose";
 import connectdb from "./db/index.js"

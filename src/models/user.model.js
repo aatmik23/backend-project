@@ -99,5 +99,5 @@ UserSchema.method.generateRefreshToken = function(){
    )
 }
 
-
+router.route("/login").post(login)
 export const User = mongoose.model("User",UserSchema)
