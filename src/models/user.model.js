@@ -1,7 +1,8 @@
 import mongoose,{ Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt"
-import { useReducer } from "react";
+
+
 
 const UserSchema = new Schema(
     {
@@ -50,7 +51,7 @@ const UserSchema = new Schema(
             required: [true, 'password is required']
         },
         refreshtoken:{
-            type: string
+            type: String
         }
 
 
@@ -61,17 +62,17 @@ const UserSchema = new Schema(
 
 UserSchema.pre("save",async function(next){
 
-    if(!this.isModified("password")) return next()
+    if(!this.isModified("password")) return next
 
     this.password = await bcrypt.hash(this.password,10)
-    next()
+    next
 })
 
-UserSchema.method.isPasswordCorrect = async function(password){
-    await bcrypt.compare(password,this.password)
+UserSchema.methods.isPasswordCorrect = async function(password){
+   return await bcrypt.compare(password,this.password)
 }
 
-UserSchema.method.generateAccessToken = function(){
+UserSchema.methods.generateAccessToken = function(){
    return jwt.sign(
     {
         _id : this._id,
@@ -81,12 +82,12 @@ UserSchema.method.generateAccessToken = function(){
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-        expiresIn : ACCESS_TOKEN_EXPIRY
+        expiresIn : process.env.ACCESS_TOKEN_EXPIRY
     }
    )
 }
 
-UserSchema.method.generateRefreshToken = function(){
+UserSchema.methods.generateRefreshToken = function(){
    return jwt.sign(
     {
         _id : this._id, //have less ifno
@@ -94,10 +95,9 @@ UserSchema.method.generateRefreshToken = function(){
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
-        expiresIn : REFRESH_TOKEN_EXPIRY
+        expiresIn : process.env.REFRESH_TOKEN_EXPIRY
     }
    )
 }
 
-router.route("/login").post(login)
 export const User = mongoose.model("User",UserSchema)

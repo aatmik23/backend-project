@@ -4,7 +4,6 @@ dotenv.config({
 })
 import {app} from "./app.js"
 
-import mongoose from "mongoose";
 import connectdb from "./db/index.js"
 
 console.log("process.env.PORT",process.env.PORT )
