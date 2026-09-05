@@ -117,7 +117,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     })
     console.log(user)
     if(!user){
-        throw new Apierror("user not found")
+        throw new Apierror(401,"user not found")
     }
 
     const isPasswordValid = await user.isPasswordCorrect(password)//method is available in user not it User
