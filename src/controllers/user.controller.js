@@ -292,7 +292,9 @@ const updateAccountDeatails = asyncHandler(async(req,res)=>{
         throw new Apierror(401,"fullname and email is required")
     }
 
-    const user = User.findByIdAndUpdate(
+    console.log(fullname)
+
+    const user = await User.findByIdAndUpdate(
         req.user?._id,
         {
             $set:{
@@ -321,7 +323,9 @@ const updateAccountDeatails = asyncHandler(async(req,res)=>{
 
 const updateUserAvatar = asyncHandler(async(req,res)=>{
 
-    const avatarLocalPath = req.file?.avatar
+    const avatarLocalPath = req.file?.path
+
+    console.log("req.file",avatarLocalPath)
 
     if(!avatarLocalPath){
         throw new Apierror(401,"avatar file is missing")
@@ -343,6 +347,10 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
         { new: true}
     ).select("-password")
 
+    if(!user){
+        throw new Apierror(500,"error is database")
+    }
+
     return res
     .status(200)
     .json(
@@ -357,7 +365,7 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
 
 const updateUserCoverImage = asyncHandler(async(req,res)=>{
 
-    const coverImageLocalPath = req.file?.coverimage
+    const coverImageLocalPath = req.file?.path
 
     if(!coverImageLocalPath){
         throw new Apierror(401,"coverImage file is missing")

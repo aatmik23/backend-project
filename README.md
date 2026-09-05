@@ -85,6 +85,9 @@ The server will start on `http://localhost:8000` (or your configured `PORT`).
 | Feature | Description |
 |---|---|
 | `POST /api/v1/users/register` | Register a new user with avatar/cover image upload |
+
+![alt text](/assets/image.png)
+
 | `POST /api/v1/users/login` | Authenticate user and issue tokens |
 | `GET /api/v1/users/channel/:username` | Get aggregated channel profile with subscriber count |
 | `GET /api/v1/users/history` | Get user's watch history with populated video & owner details |
