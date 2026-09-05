@@ -116,8 +116,11 @@ The server will start on `http://localhost:8000` (or your configured `PORT`).
 
 
 | `GET /api/v1/users/channel/:username` | Get aggregated channel profile with subscriber count |
+
+![alt text](/assets/image8.png)
 | `GET /api/v1/users/history` | Get user's watch history with populated video & owner details |
 
+![alt text](/assets/image9.png)
 ## What I Learned
 
 The most challenging part of this project was the **watch history aggregation pipeline** — using nested `$lookup` stages to join `videos` → `watchHistory` and then `users` → video `owner`, while projecting only the necessary fields. It's a good example of how MongoDB aggregation can replace multiple round-trip queries with a single efficient pipeline.
