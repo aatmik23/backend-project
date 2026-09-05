@@ -24,6 +24,17 @@ import userRoutes from "./routes/user.route.js"
 //routes declaration 
 app.use("/api/v1/users", userRoutes)
 
+app.use((err, req, res, next) => {
+    const statuscode = err.statuscode || 500
+    const message = err.message || "Internal Server Error"
+
+    return res.status(statuscode).json({
+        success: false,
+        message: message,
+        
+    })
+})
+
 //http://localhost:8000/api/v1/users/register
 
 export {app}
