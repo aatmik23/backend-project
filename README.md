@@ -89,6 +89,32 @@ The server will start on `http://localhost:8000` (or your configured `PORT`).
 ![alt text](/assets/image.png)
 
 | `POST /api/v1/users/login` | Authenticate user and issue tokens |
+![alt text](/assets/image1.png)
+
+`POST /api/v1/users/refresh-token`
+
+![alt text](/assets/image3.png)
+
+
+`POST /api/v1/users/change-password`
+
+![alt text](/assets/image4.png)
+
+
+`GET /api/v1/users/change-user`
+
+![alt text](/assets/image5.png)
+
+`PATCH /api/v1/users/avatar`
+
+
+![alt text](/assets/image6.png)
+
+`PATCH /api/v1/users/update-account`
+
+![alt text](/assets/image7.png)
+
+
 | `GET /api/v1/users/channel/:username` | Get aggregated channel profile with subscriber count |
 | `GET /api/v1/users/history` | Get user's watch history with populated video & owner details |
 
